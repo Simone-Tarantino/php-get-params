@@ -19,19 +19,33 @@ $age = $_GET["age"];
   </head>
   <body>
     <?php
-    if (strlen($name) > $name_min_length){
-      if (strpos($mail, $find_1) !== false && strpos($mail, $find_2) !== false) {
-        if (is_numeric($age)){
-          echo "Accesso riuscito";
-        } else {
-          echo "Accesso negato";
-        }
-      } else {
-        echo "Accesso negato";
-      }
-    } else {
-      echo "Accesso negato";
-    }
+
+    // if (strlen($name) > $name_min_length){
+    //   if (strpos($mail, $find_1) !== false && strpos($mail, $find_2) !== false) {
+    //     if (is_numeric($age)){
+    //       echo "Accesso riuscito";
+    //     } else {
+    //       echo "Accesso negato";
+    //     }
+    //   } else {
+    //     echo "Accesso negato";
+    //   }
+    // } else {
+    //   echo "Accesso negato";
+    // }
+
+    if (empty($name) || empty($mail) || empty($age)) {
+    $message = 'Errore';
+  } elseif (strlen($name) <= 3) {
+    $message = 'Accesso Negato!';
+  } elseif (strpos($mail, $find_1) === false || strpos($mail, $find_2) === false) {
+    $message = 'Accesso Negato!';
+  } elseif (!is_numeric($age)) {
+    $message = 'Accesso Negato';
+  } else {
+    $message = 'Accesso Riuscito';
+  }
+
     ?>
   </body>
 </html>
